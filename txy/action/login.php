@@ -12,11 +12,9 @@ header('Content-Type:text/html;charset=utf-8');
 
 $post_url = "http://59.77.226.32/logincheck.asp";
 
-//$muser = $_POST["stunum"];
-//$passwd = $_POST["passwd"];
+$muser = $_POST["stunum"];
+$passwd = $_POST["passwd"];
 
-$muser = "031302305";
-$passwd = "A123A123";
 
 $header[0] = "Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8";
 $header[] = "Accept-Encoding:gzip, deflate";

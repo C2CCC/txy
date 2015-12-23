@@ -15,7 +15,6 @@ $post_url = "http://59.77.226.32/logincheck.asp";
 $muser = $_POST["stunum"];
 $passwd = $_POST["passwd"];
 
-
 $header[0] = "Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8";
 $header[] = "Accept-Encoding:gzip, deflate";
 $header[] = "Accept-Language:zh-CN,zh;q=0.8";

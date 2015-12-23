@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015-12-23 08:41:26
+-- Generation Time: 2015-12-23 14:29:15
 -- 服务器版本： 5.6.17
 -- PHP Version: 5.5.12
 
@@ -32,9 +32,18 @@ CREATE TABLE IF NOT EXISTS `booked_tickets` (
   `tel` varchar(20) NOT NULL,
   `amount` int(11) NOT NULL,
   `complete` int(11) NOT NULL,
-  PRIMARY KEY (`stunum`,`tno`),
+  PRIMARY KEY (`stunum`,`tno`,`tel`),
   KEY `tno` (`tno`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `booked_tickets`
+--
+
+INSERT INTO `booked_tickets` (`stunum`, `tno`, `tel`, `amount`, `complete`) VALUES
+('031302305', '1', '18655557777', 4, 1),
+('031302305', '1', '18666666666', 2, 1),
+('031302305', '2', '18655557777', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -58,7 +67,22 @@ INSERT INTO `order_form` (`stunum`, `tno`, `amount`, `status`, `time`) VALUES
 ('031302305', '1', 2, '已完成', '2015-12-23 08:36:14'),
 ('031302305', '1', 2, '已完成', '2015-12-23 08:37:54'),
 ('031302305', '1', 2, '已完成', '2015-12-23 08:39:43'),
-('031302305', '1', 2, '已退票', '2015-12-23 08:39:45');
+('031302305', '1', 2, '已退票', '2015-12-23 08:39:45'),
+('031302305', '1', 2, '已完成', '2015-12-23 13:57:09'),
+('031302305', '1', 2, '已完成', '2015-12-23 13:57:12'),
+('031302305', '1', 2, '已完成', '2015-12-23 13:57:16'),
+('031302305', '1', 2, '已完成', '2015-12-23 13:57:17'),
+('031302305', '1', 2, '已退票', '2015-12-23 13:58:06'),
+('031302305', '1', 2, '已退票', '2015-12-23 13:58:09'),
+('031302305', '1', 2, '已退票', '2015-12-23 13:58:24'),
+('031302305', '1', 2, '已完成', '2015-12-23 14:01:37'),
+('031302305', '1', 2, '已完成', '2015-12-23 14:02:20'),
+('031302305', '1', 2, '已完成', '2015-12-23 14:06:22'),
+('031302305', '1', 2, '已完成', '2015-12-23 14:06:43'),
+('031302305', '1', 2, '已完成', '2015-12-23 14:06:45'),
+('031302305', '1', 2, '已完成', '2015-12-23 14:06:45'),
+('031302305', '1', 2, '已完成', '2015-12-23 14:23:24'),
+('031302305', '2', 2, '已完成', '2015-12-23 14:24:00');
 
 -- --------------------------------------------------------
 
@@ -114,8 +138,8 @@ INSERT INTO `user` (`stunum`, `name`, `dept`, `role`) VALUES
 -- 限制表 `booked_tickets`
 --
 ALTER TABLE `booked_tickets`
-  ADD CONSTRAINT `booked_tickets_ibfk_1` FOREIGN KEY (`stunum`) REFERENCES `user` (`stunum`),
-  ADD CONSTRAINT `booked_tickets_ibfk_2` FOREIGN KEY (`tno`) REFERENCES `ticket` (`tno`);
+  ADD CONSTRAINT `booked_tickets_ibfk_2` FOREIGN KEY (`tno`) REFERENCES `ticket` (`tno`),
+  ADD CONSTRAINT `booked_tickets_ibfk_1` FOREIGN KEY (`stunum`) REFERENCES `user` (`stunum`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

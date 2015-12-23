@@ -16,7 +16,7 @@ $tel = $_POST["tel"];
 $amount = $_POST["amount"];
 /*
 $stunum = '031302305';
-$tno = '1';
+$tno = '2';
 $tel = '18655557777';
 $amount = '2';
 */

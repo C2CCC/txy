@@ -1,16 +1,547 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="utf-8" />
-		<script type="text/javascript" src="js/jquery-1.11.1.min.js" ></script>
-		<title>同乡游</title>
+		<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+		<title>同乡游API说明</title>
+		<style>
+			header {
+				width: 80%;
+				margin: 20px auto;
+				font-size: 20px;
+				font-weight: bold;
+			}
+			
+			footer {
+				width: 80%;
+				margin: 20px auto;
+				font-size: 12px;
+				color: #A9A9A9;
+				line-height: 20px;
+			}
+			
+			div,
+			table {
+				border-radius: 10px;
+				margin: 10px auto;
+			}
+			
+			table {
+				width: 100%;
+				border-collapse: collapse;
+			}
+			
+			textarea {
+				width: 100%;
+				height: 200px;
+				resize: none;
+			}
+			
+			td,
+			th {
+				padding: 5px;
+				border: 1px solid darkgray;
+				text-align: center;
+			}
+			
+			#content {
+				width: 80%;
+				margin: 0 auto;
+				border: 1px solid darkgray;
+				overflow-x: hidden;
+			}
+			
+			.item {
+				width: 100%;
+				margin-left: -1px;
+				margin-top: 0;
+				margin-bottom: 10px;
+				border: 1px solid darkgray;
+			}
+			
+			.item-head {
+				margin: 0 -10px;
+				width: 120%;
+				height: 40px;
+				line-height: 40px;
+				padding: 0 60px;
+				color: white;
+				background: cornflowerblue;
+			}
+			
+			.item-content {
+				width: 90%;
+				margin: 10px auto;
+			}
+			
+			.return-data {
+				margin-top: 10px;
+			}
+		</style>
 		<script>
-			$(document).ready(function(){
-				
-			});
+			$(document).ready(function() {});
 		</script>
 	</head>
+
 	<body>
-		
+		<header>
+			同乡游API说明
+		</header>
+		<div id="content">
+			<div class="item">
+				<div class="item-head">
+					登录
+				</div>
+				<div class="item-content">
+					<div>
+						<span>url:</span>
+						<span class="url">http://txy.azurewebsites.net/action/login.php</span>
+					</div>
+					<div>
+						<span>method:</span>
+						<span class="method">POST</span>
+					</div>
+					<table class="params-intro" cellspacing="0" border="1">
+						<tr>
+							<th>参数</th>
+							<th>示例</th>
+							<th>备注</th>
+						</tr>
+						<tr>
+							<td>stunum</td>
+							<td>031302305</td>
+							<td>学号</td>
+						</tr>
+						<tr>
+							<td>passwd</td>
+							<td></td>
+							<td>密码</td>
+						</tr>
+					</table>
+					<span>返回数据示例：</span>
+					<textarea class="return-data" readonly="readonly">
+{
+    "stunum": "031302305",
+    "name": "出陈铖",
+    "dept": "数学与计算机科学学院"
+}
+					</textarea>
+				</div>
+			</div>
+			<div class="item">
+				<div class="item-head">
+					获取可订车票
+				</div>
+				<div class="item-content">
+					<div>
+						<span>url:</span>
+						<span class="url">http://txy.azurewebsites.net/action/availableTickets.php</span>
+					</div>
+					<div>
+						<span>method:</span>
+						<span class="method">GET</span>
+					</div>
+					<table class="params-intro" cellspacing="0" border="1">
+						<tr>
+							<th>参数</th>
+							<th>示例</th>
+							<th>备注</th>
+						</tr>
+
+					</table>
+					<span>返回数据示例：</span>
+					<textarea class="return-data" readonly="readonly">
+[
+    {
+        "tno": "2",
+        "departure": "福州",
+        "destination": "石狮",
+        "time": "2015-12-31 00:00:00",
+        "price": "66",
+        "rest": "233",
+        "deadline": "2016-01-20 00:00:00"
+    },
+    {
+        "tno": "1",
+        "departure": "福州",
+        "destination": "晋江",
+        "time": "2015-12-17 00:00:00",
+        "price": "66",
+        "rest": "233",
+        "deadline": "2015-12-29 00:00:00"
+    }
+]
+					</textarea>
+				</div>
+			</div>
+			<div class="item">
+				<div class="item-head">
+					订票
+				</div>
+				<div class="item-content">
+					<div>
+						<span>url:</span>
+						<span class="url">http://txy.azurewebsites.net/action/bookTickets.php</span>
+					</div>
+					<div>
+						<span>method:</span>
+						<span class="method">POST</span>
+					</div>
+					<table class="params-intro" cellspacing="0" border="1">
+						<tr>
+							<th>参数</th>
+							<th>示例</th>
+							<th>备注</th>
+						</tr>
+						<tr>
+							<td>stunum</td>
+							<td>031302305</td>
+							<td>学号</td>
+						</tr>
+						<tr>
+							<td>tno</td>
+							<td></td>
+							<td>车票编号</td>
+						</tr>
+						<tr>
+							<td>tel</td>
+							<td></td>
+							<td>电话号码</td>
+						</tr>
+						<tr>
+							<td>amount</td>
+							<td>3</td>
+							<td>票数</td>
+						</tr>
+					</table>
+					<span>返回数据示例：</span>
+					<textarea class="return-data" readonly="readonly">
+{
+    "status": true
+}
+					</textarea>
+				</div>
+			</div>
+			<div class="item">
+				<div class="item-head">
+					退票
+				</div>
+				<div class="item-content">
+					<div>
+						<span>url:</span>
+						<span class="url">http://txy.azurewebsites.net/action/returnTickets.php</span>
+					</div>
+					<div>
+						<span>method:</span>
+						<span class="method">POST</span>
+					</div>
+					<table class="params-intro" cellspacing="0" border="1">
+						<tr>
+							<th>参数</th>
+							<th>示例</th>
+							<th>备注</th>
+						</tr>
+						<tr>
+							<td>stunum</td>
+							<td>031302305</td>
+							<td>学号</td>
+						</tr>
+						<tr>
+							<td>tno</td>
+							<td></td>
+							<td>车票编号</td>
+						</tr>
+						<tr>
+							<td>tel</td>
+							<td></td>
+							<td>电话号码</td>
+						</tr>
+						<tr>
+							<td>amount</td>
+							<td>3</td>
+							<td>票数</td>
+						</tr>
+					</table>
+					<span>返回数据示例：</span>
+					<textarea class="return-data" readonly="readonly">
+{
+    "status": true
+}
+					</textarea>
+				</div>
+			</div>
+			<div class="item">
+				<div class="item-head">
+					获取已订车票
+				</div>
+				<div class="item-content">
+					<div>
+						<span>url:</span>
+						<span class="url">http://txy.azurewebsites.net/action/getBookedTickets.php</span>
+					</div>
+					<div>
+						<span>method:</span>
+						<span class="method">GET</span>
+					</div>
+					<table class="params-intro" cellspacing="0" border="1">
+						<tr>
+							<th>参数</th>
+							<th>示例</th>
+							<th>备注</th>
+						</tr>
+						<tr>
+							<td>stunum</td>
+							<td>031302305</td>
+							<td>学号</td>
+						</tr>
+					</table>
+					<span>返回数据示例：</span>
+					<textarea class="return-data" readonly="readonly">
+[
+    {
+        "tno": "1",
+        "departure": "福州",
+        "destination": "晋江",
+        "time": "2015-12-17 00:00:00",
+        "price": "66",
+        "rest": "233",
+        "deadline": "2015-12-29 00:00:00",
+        "tel": "18655557777",
+        "amount": "4"
+    },
+    {
+        "tno": "1",
+        "departure": "福州",
+        "destination": "晋江",
+        "time": "2015-12-17 00:00:00",
+        "price": "66",
+        "rest": "233",
+        "deadline": "2015-12-29 00:00:00",
+        "tel": "18666666666",
+        "amount": "2"
+    },
+    {
+        "tno": "2",
+        "departure": "福州",
+        "destination": "石狮",
+        "time": "2015-12-31 00:00:00",
+        "price": "66",
+        "rest": "233",
+        "deadline": "2016-01-20 00:00:00",
+        "tel": "18655557777",
+        "amount": "2"
+    }
+]
+					</textarea>
+				</div>
+			</div>
+			<div class="item">
+				<div class="item-head">
+					获取订单
+				</div>
+				<div class="item-content">
+					<div>
+						<span>url:</span>
+						<span class="url">http://txy.azurewebsites.net/action/getOrderForms.php</span>
+					</div>
+					<div>
+						<span>method:</span>
+						<span class="method">GET</span>
+					</div>
+					<table class="params-intro" cellspacing="0" border="1">
+						<tr>
+							<th>参数</th>
+							<th>示例</th>
+							<th>备注</th>
+						</tr>
+						<tr>
+							<td>stunum</td>
+							<td>031302305</td>
+							<td>学号</td>
+						</tr>
+					</table>
+					<span>返回数据示例：</span>
+					<textarea class="return-data" readonly="readonly">
+[
+    {
+        "name": "出陈铖",
+        "tel": "18655557777",
+        "amount": "2",
+        "tno": "1",
+        "departure": "福州",
+        "destination": "晋江",
+        "time": "2015-12-17 00:00:00",
+        "price": "66",
+        "rest": "233",
+        "deadline": "2015-12-29 00:00:00",
+        "status": "已完成"
+    },
+    {
+        "name": "出陈铖",
+        "tel": "18655557777",
+        "amount": "2",
+        "tno": "1",
+        "departure": "福州",
+        "destination": "晋江",
+        "time": "2015-12-17 00:00:00",
+        "price": "66",
+        "rest": "233",
+        "deadline": "2015-12-29 00:00:00",
+        "status": "已完成"
+    },
+    {
+        "name": "出陈铖",
+        "tel": "18655557777",
+        "amount": "2",
+        "tno": "1",
+        "departure": "福州",
+        "destination": "晋江",
+        "time": "2015-12-17 00:00:00",
+        "price": "66",
+        "rest": "233",
+        "deadline": "2015-12-29 00:00:00",
+        "status": "已完成"
+    },
+    {
+        "name": "出陈铖",
+        "tel": "18655557777",
+        "amount": "2",
+        "tno": "1",
+        "departure": "福州",
+        "destination": "晋江",
+        "time": "2015-12-17 00:00:00",
+        "price": "66",
+        "rest": "233",
+        "deadline": "2015-12-29 00:00:00",
+        "status": "已退票"
+    },
+    {
+        "name": "出陈铖",
+        "tel": "18655557777",
+        "amount": "2",
+        "tno": "1",
+        "departure": "福州",
+        "destination": "晋江",
+        "time": "2015-12-17 00:00:00",
+        "price": "66",
+        "rest": "233",
+        "deadline": "2015-12-29 00:00:00",
+        "status": "已完成"
+    },
+    {
+        "name": "出陈铖",
+        "tel": "18655557777",
+        "amount": "2",
+        "tno": "1",
+        "departure": "福州",
+        "destination": "晋江",
+        "time": "2015-12-17 00:00:00",
+        "price": "66",
+        "rest": "233",
+        "deadline": "2015-12-29 00:00:00",
+        "status": "已完成"
+    },
+    {
+        "name": "出陈铖",
+        "tel": "18655557777",
+        "amount": "2",
+        "tno": "1",
+        "departure": "福州",
+        "destination": "晋江",
+        "time": "2015-12-17 00:00:00",
+        "price": "66",
+        "rest": "233",
+        "deadline": "2015-12-29 00:00:00",
+        "status": "已完成"
+    },
+    {
+        "name": "出陈铖",
+        "tel": "18655557777",
+        "amount": "2",
+        "tno": "1",
+        "departure": "福州",
+        "destination": "晋江",
+        "time": "2015-12-17 00:00:00",
+        "price": "66",
+        "rest": "233",
+        "deadline": "2015-12-29 00:00:00",
+        "status": "已完成"
+    },
+    {
+        "name": "出陈铖",
+        "tel": "18655557777",
+        "amount": "2",
+        "tno": "1",
+        "departure": "福州",
+        "destination": "晋江",
+        "time": "2015-12-17 00:00:00",
+        "price": "66",
+        "rest": "233",
+        "deadline": "2015-12-29 00:00:00",
+        "status": "已退票"
+    },
+    {
+        "name": "出陈铖",
+        "tel": "18655557777",
+        "amount": "2",
+        "tno": "1",
+        "departure": "福州",
+        "destination": "晋江",
+        "time": "2015-12-17 00:00:00",
+        "price": "66",
+        "rest": "233",
+        "deadline": "2015-12-29 00:00:00",
+        "status": "已退票"
+    },
+    {
+        "name": "出陈铖",
+        "tel": "18655557777",
+        "amount": "2",
+        "tno": "1",
+        "departure": "福州",
+        "destination": "晋江",
+        "time": "2015-12-17 00:00:00",
+        "price": "66",
+        "rest": "233",
+        "deadline": "2015-12-29 00:00:00",
+        "status": "已退票"
+    },
+    {
+        "name": "出陈铖",
+        "tel": "18655557777",
+        "amount": "2",
+        "tno": "1",
+        "departure": "福州",
+        "destination": "晋江",
+        "time": "2015-12-17 00:00:00",
+        "price": "66",
+        "rest": "233",
+        "deadline": "2015-12-29 00:00:00",
+        "status": "已完成"
+    },
+    {
+        "name": "出陈铖",
+        "tel": "18655557777",
+        "amount": "2",
+        "tno": "1",
+        "departure": "福州",
+        "destination": "晋江",
+        "time": "2015-12-17 00:00:00",
+        "price": "66",
+        "rest": "233",
+        "deadline": "2015-12-29 00:00:00",
+        "status": "已完成"
+    }
+]
+					</textarea>
+				</div>
+			</div>
+		</div>
+		<footer>
+			Copyright
+			<br />才没有Copyright勒
+		</footer>
 	</body>
+
 </html>

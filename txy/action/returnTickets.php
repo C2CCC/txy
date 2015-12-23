@@ -20,18 +20,22 @@ $tno = '1';
 $tel = '18655557777';
 $amount = '2';
 */
-$if_exist = mysql_query("select * from booked_tickets where stunum='$stunum' and tno='$tno' and tel='$tel'", $con);
-if (mysql_num_rows($if_exist) != 0) {
-	$result = mysql_query("update booked_tickets set amount=amount+'$amount' where stunum='$stunum' and tno='$tno'", $con);
+$if_exist = mysql_query("select amount from booked_tickets where stunum='$stunum' and tno='$tno' and tel='$tel'", $con);
+$tickets = array();
+while ($row = mysql_fetch_array($if_exist, MYSQL_ASSOC)) {
+	$tickets[] = $row;
+}
+if ($tickets[0]['amount'] > $amount) {
+	$result = mysql_query("update booked_tickets set amount=amount-'$amount' where stunum='$stunum' and tno='$tno'", $con);
 } else {
-	$result = mysql_query("insert into booked_tickets(stunum,tno,tel,amount,complete) values('$stunum','$tno','$tel','$amount',1)", $con);
+	$result = mysql_query("delete from booked_tickets where stunum='$stunum' and tno='$tno'", $con);
 }
 if (mysql_affected_rows() != 0) {
 	$status = TRUE;
 }
 if($status){
 	$time = date('Y-m-d H:i:s');
-	mysql_query("insert into order_form(stunum,tno,amount,status,time) values('$stunum','$tno','$amount','已完成','$time')", $con);
+	mysql_query("insert into order_form(stunum,tno,amount,status,time) values('$stunum','$tno','$amount','已退票','$time')", $con);
 }
 $return_array = array('status' => $status);
 $json_str = json_encode($return_array);
